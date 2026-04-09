@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crystal — UGC Creator · Rate Card</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Syne:wght@400;500;600;700&family=Instrument+Sans:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --white:    #ffffff;
+  --off:      #f8f5f0;
+  --putty:    #f2ede5;
+  --putty2:   #e8e0d4;
+  --putty3:   #ddd4c6;
+  --text:     #1a1714;
+  --text-mid: #524d47;
+  --text-soft:#9a9088;
+  --blush:    #dfa0ac;
+  --blush2:   #f2d4d9;
+  --blush3:   #fdf0f2;
+  --peach:    #e8b88a;
+  --peach2:   #faebd7;
+  --sky:      #90b8d8;
+  --sky2:     #d4e8f5;
+  --sky3:     #f0f7fc;
+  --border:   rgba(160,150,138,0.2);
+  --border2:  rgba(160,150,138,0.38);
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'Instrument Sans', sans-serif; background: var(--off); color: var(--text); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--putty); }
+::-webkit-scrollbar-thumb { background: var(--putty3); border-radius: 2px; }
+
+/* ── REVEAL ── */
+.sr { opacity:0; transform:translateY(22px); transition: opacity .75s ease, transform .75s ease; }
+.sr.on { opacity:1; transform:none; }
+
+/* ════════════════════════
+   PROOF HERO
+════════════════════════ */
+.proof-hero {
+  background: var(--text);
+  color: var(--white);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 80px 40px 64px;
+  position: relative;
+  overflow: hidden;
+}
+.blob { position:absolute; border-radius:50%; pointer-events:none; animation: blobDrift 14s ease-in-out infinite alternate; }
+.blob-1 { width:520px;height:520px;background:radial-gradient(circle,rgba(223,160,172,.13) 0%,transparent 70%);top:-100px;right:-80px;animation-duration:16s; }
+.blob-2 { width:420px;height:420px;background:radial-gradient(circle,rgba(144,184,216,.1) 0%,transparent 70%);bottom:-80px;left:-60px;animation-duration:20s;animation-delay:-7s; }
+.blob-3 { width:300px;height:300px;background:radial-gradient(circle,rgba(232,184,138,.09) 0%,transparent 70%);top:42%;left:22%;animation-duration:22s;animation-delay:-4s; }
+@keyframes blobDrift { from{transform:translate(0,0) scale(1)} to{transform:translate(18px,14px) scale(1.05)} }
+
+.hero-pre { font-family:'Syne',sans-serif;font-size:10px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.38);margin-bottom:28px;position:relative; }
+
+.hero-big-num { font-family:'DM Serif Display',serif;font-size:clamp(96px,19vw,210px);font-weight:400;line-height:.88;color:var(--white);letter-spacing:-.03em;position:relative; }
+.hero-big-suffix { font-family:'DM Serif Display',serif;font-size:clamp(38px,7.5vw,85px);font-style:italic;color:var(--blush);vertical-align:super;line-height:1; }
+.hero-big-context { font-family:'Syne',sans-serif;font-size:12px;color:rgba(255,255,255,.42);letter-spacing:.1em;margin-top:12px; }
+
+.hero-rule { width:1px;height:56px;background:linear-gradient(to bottom,rgba(255,255,255,.35),transparent);margin:26px auto; }
+
+.hero-name { font-family:'DM Serif Display',serif;font-size:clamp(34px,5.5vw,68px);font-weight:400;color:var(--white);letter-spacing:-.01em;line-height:1;margin-bottom:10px; }
+.hero-name em { font-style:italic;color:var(--blush); }
+.hero-subtitle { font-family:'Syne',sans-serif;font-size:11px;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.38);margin-bottom:40px; }
+
+.proof-pills { display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:44px; }
+.proof-pill { background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.13);border-radius:99px;padding:10px 22px;display:flex;align-items:center;gap:12px;backdrop-filter:blur(6px); }
+.pp-num { font-family:'DM Serif Display',serif;font-size:22px;font-weight:400;color:var(--white);line-height:1; }
+.pp-lbl { font-family:'Syne',sans-serif;font-size:9px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.4);line-height:1.4;text-align:left; }
+
+.hero-collab-strip { display:flex;align-items:center;gap:9px;flex-wrap:wrap;justify-content:center; }
+.hcs-label { font-family:'Syne',sans-serif;font-size:9px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.28); }
+.hcs-chip { font-family:'Syne',sans-serif;font-size:10px;font-weight:500;letter-spacing:.06em;padding:5px 14px;border:1px solid rgba(255,255,255,.14);border-radius:99px;color:rgba(255,255,255,.55);transition:all .2s; }
+.hcs-chip:hover { background:rgba(255,255,255,.08);color:var(--white); }
+
+.hero-scroll-cue { position:absolute;bottom:26px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px; }
+.hsc-text { font-family:'Syne',sans-serif;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.22); }
+.hsc-dot { width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.22);animation:dotBounce 2s ease-in-out infinite; }
+@keyframes dotBounce { 0%,100%{transform:translateY(0);opacity:.22} 50%{transform:translateY(6px);opacity:.55} }
+
+/* ════════════════════════
+   BENCHMARK STRIP
+════════════════════════ */
+.bench-strip { background:var(--blush3);border-top:1px solid rgba(223,160,172,.28);border-bottom:1px solid rgba(223,160,172,.28);padding:18px 40px; }
+.bench-inner { display:flex;gap:40px;align-items:center;justify-content:center;flex-wrap:wrap; }
+.bench-item { display:flex;align-items:center;gap:9px;font-family:'Syne',sans-serif;font-size:11px;font-weight:500;color:var(--text-mid);letter-spacing:.03em; }
+.bench-icon { font-size:15px; }
+.bench-item strong { color:var(--text);font-weight:600; }
+
+/* ════════════════════════
+   PAGE
+════════════════════════ */
+.page { max-width:1020px;margin:0 auto;padding:0 36px; }
+.sec-wrap { padding:88px 0; }
+.sec-wrap + .sec-wrap { border-top:1px solid var(--border); }
+.sec-h { display:flex;align-items:flex-start;gap:22px;margin-bottom:48px; }
+.sec-num { font-family:'DM Serif Display',serif;font-size:13px;font-style:italic;color:var(--putty3);padding-top:8px;flex-shrink:0; }
+.sec-titles { flex:1; }
+.sec-kicker { font-family:'Syne',sans-serif;font-size:9px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--text-soft);margin-bottom:6px;display:block; }
+.sec-title { font-family:'DM Serif Display',serif;font-size:clamp(28px,4vw,44px);font-weight:400;line-height:1.1;color:var(--text); }
+.sec-title em { font-style:italic;color:var(--text-mid); }
+.sec-desc { font-size:14px;color:var(--text-soft);line-height:1.8;margin-top:10px;max-width:480px; }
+
+/* ════════════════════════
+   GEN Z EXPERTISE SECTION
+════════════════════════ */
+.expertise-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+/* Left: the statement card */
+.expertise-statement {
+  background: var(--text);
+  border-radius: 24px;
+  padding: 44px 40px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 320px;
+}
+.expertise-statement::before {
+  content:'';position:absolute;
+  width:340px;height:340px;border-radius:50%;
+  background:radial-gradient(circle,rgba(223,160,172,.12) 0%,transparent 70%);
+  top:-60px;right:-60px;pointer-events:none;
+}
+.es-eyebrow {
+  font-family:'Syne',sans-serif;font-size:9px;font-weight:600;
+  letter-spacing:.28em;text-transform:uppercase;
+  color:rgba(255,255,255,.35);margin-bottom:18px;
+}
+.es-quote {
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(22px,2.8vw,30px);
+  font-weight:400;
+  line-height:1.25;
+  color:var(--white);
+  position:relative;
+  z-index:2;
+  flex:1;
+}
+.es-quote em { font-style:italic;color:var(--blush); }
+.es-byline {
+  font-family:'Syne',sans-serif;font-size:10px;font-weight:500;
+  letter-spacing:.12em;color:rgba(255,255,255,.35);
+  margin-top:24px;
+}
+
+/* Right: the four pillars */
+.expertise-pillars {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.pillar-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 22px 20px;
+  transition: transform .2s, box-shadow .2s;
+  position: relative;
+  overflow: hidden;
+}
+.pillar-card:hover { transform:translateY(-3px);box-shadow:0 10px 28px rgba(26,23,20,.08); }
+.pillar-card::before {
+  content:'';position:absolute;inset:0;border-radius:18px;
+  opacity:0;transition:opacity .2s;
+}
+.pillar-blush::before { background:radial-gradient(ellipse 80% 80% at 10% 10%, rgba(223,160,172,.12), transparent); }
+.pillar-sky::before   { background:radial-gradient(ellipse 80% 80% at 10% 10%, rgba(144,184,216,.12), transparent); }
+.pillar-peach::before { background:radial-gradient(ellipse 80% 80% at 10% 10%, rgba(232,184,138,.12), transparent); }
+.pillar-sage::before  { background:radial-gradient(ellipse 80% 80% at 10% 10%, rgba(140,184,154,.12), transparent); }
+.pillar-card:hover::before { opacity:1; }
+
+.pillar-icon {
+  font-size: 22px;
+  margin-bottom: 10px;
+  display: block;
+}
+.pillar-title {
+  font-family:'Syne',sans-serif;font-size:12px;font-weight:600;
+  letter-spacing:.04em;color:var(--text);margin-bottom:6px;
+}
+.pillar-desc { font-size:11px;color:var(--text-soft);line-height:1.6; }
+
+/* ════════════════════════
+   VIDEO SECTION
+════════════════════════ */
+.vid-hero-wrap {
+  background:var(--white);border-radius:24px;border:1px solid var(--border);
+  overflow:hidden;margin-bottom:12px;
+  display:grid;grid-template-columns:1fr 1.6fr;
+}
+.vid-hero-left { padding:36px 32px;display:flex;flex-direction:column;justify-content:space-between; }
+
+.vid-hero-badge {
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--text);color:var(--white);
+  font-family:'Syne',sans-serif;font-size:9px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+  padding:6px 14px;border-radius:99px;margin-bottom:22px;width:fit-content;
+}
+.badge-dot { width:6px;height:6px;border-radius:50%;background:var(--blush);animation:badgePulse 2s ease-in-out infinite; }
+@keyframes badgePulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.55;transform:scale(.75)} }
+
+.vid-hero-title { font-family:'DM Serif Display',serif;font-size:30px;font-weight:400;color:var(--text);line-height:1.2;margin-bottom:6px; }
+.vid-hero-title em { font-style:italic; }
+.vid-hero-brand { font-family:'Syne',sans-serif;font-size:10px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--text-soft);margin-bottom:26px; }
+
+.stat-bars { display:flex;flex-direction:column;gap:13px;margin-bottom:26px; }
+.stat-bar-top { display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px; }
+.stat-bar-plat { display:flex;align-items:center;gap:6px;font-family:'Syne',sans-serif;font-size:10px;font-weight:500;letter-spacing:.06em;color:var(--text-mid); }
+.stat-bar-dot { width:7px;height:7px;border-radius:50%;flex-shrink:0; }
+.stat-bar-val { font-family:'DM Serif Display',serif;font-size:20px;font-weight:400;color:var(--text);line-height:1; }
+.stat-bar-track { width:100%;height:4px;background:var(--putty2);border-radius:99px;overflow:hidden; }
+.stat-bar-fill { height:100%;border-radius:99px;width:0;transition:width 1.4s cubic-bezier(.16,1,.3,1); }
+
+.vid-total-row { display:flex;align-items:center;gap:12px;padding:16px 18px;background:var(--putty);border-radius:14px; }
+.vid-total-num { font-family:'DM Serif Display',serif;font-size:36px;font-weight:400;color:var(--text);line-height:1; }
+.vid-total-context { font-size:11px;color:var(--text-soft);line-height:1.5; }
+.vid-total-context strong { display:block;font-size:12px;color:var(--text-mid);font-weight:500; }
+
+.vid-hero-right { position:relative;background:var(--white);border-left:1px solid var(--border); }
+.yt-wrap { position:relative;overflow:hidden; }
+.vid-hero-right .yt-wrap { width:100%;height:100%;min-height:400px; }
+.vid-hero-right .yt-wrap iframe { position:absolute;inset:0;width:100%;height:100%;border:none; }
+
+.other-plat-links { position:absolute;top:14px;right:14px;display:flex;flex-direction:column;gap:5px;z-index:5; }
+.opl-btn {
+  font-family:'Syne',sans-serif;font-size:9px;font-weight:600;letter-spacing:.08em;
+  padding:4px 12px;border-radius:99px;
+  background:rgba(255,255,255,.88);color:var(--text-mid);
+  text-decoration:none;border:1px solid rgba(0,0,0,.08);
+  backdrop-filter:blur(4px);transition:all .2s;white-space:nowrap;
+}
+.opl-btn:hover { background:var(--text);color:var(--white); }
+
+/* secondary videos */
+.vid-secondary { display:grid;grid-template-columns:1fr 1fr;gap:12px; }
+.vid-sec-card {
+  background:var(--white);border-radius:20px;border:1px solid var(--border);
+  overflow:hidden;transition:transform .25s,box-shadow .25s;
+}
+.vid-sec-card:hover { transform:translateY(-3px);box-shadow:0 12px 30px rgba(26,23,20,.08); }
+.vid-sec-top { display:grid;grid-template-columns:1fr 1.4fr; }
+.vid-sec-yt { position:relative; }
+.vid-sec-yt .yt-wrap { width:100%;aspect-ratio:9/14; }
+.vid-sec-yt .yt-wrap iframe { position:absolute;inset:0;width:100%;height:100%;border:none; }
+
+.social-thumb {
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  width:100%;aspect-ratio:9/14;background:var(--putty);gap:10px;text-decoration:none;transition:background .2s;
+}
+.social-thumb:hover { background:var(--putty2); }
+.play-ring {
+  width:44px;height:44px;border-radius:50%;
+  border:1.5px solid var(--border2);
+  display:flex;align-items:center;justify-content:center;
+  background:var(--white);transition:all .25s;
+}
+.social-thumb:hover .play-ring { border-color:var(--blush);transform:scale(1.08); }
+.play-tri { width:0;height:0;border-top:7px solid transparent;border-bottom:7px solid transparent;border-left:12px solid var(--text);margin-left:3px;transition:border-left-color .25s; }
+.social-thumb:hover .play-tri { border-left-color:var(--blush); }
+.social-watch-lbl { font-family:'Syne',sans-serif;font-size:9px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--text-soft); }
+
+.plat-link-pills { position:absolute;top:10px;right:10px;display:flex;flex-direction:column;gap:4px;z-index:5; }
+.plp {
+  font-family:'Syne',sans-serif;font-size:8px;font-weight:600;letter-spacing:.06em;
+  padding:3px 9px;border-radius:99px;
+  background:rgba(255,255,255,.88);color:var(--text-mid);
+  text-decoration:none;border:1px solid rgba(0,0,0,.08);
+  backdrop-filter:blur(4px);transition:all .2s;white-space:nowrap;
+}
+.plp:hover { background:var(--text);color:var(--white); }
+
+.vid-sec-stats { padding:18px 16px;display:flex;flex-direction:column;justify-content:space-between;gap:10px; }
+.vid-sec-brand { font-family:'Syne',sans-serif;font-size:9px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--text-soft); }
+.mini-stat-bars { display:flex;flex-direction:column;gap:7px; }
+.mini-bar-top { display:flex;justify-content:space-between;margin-bottom:4px; }
+.mini-bar-plat { display:flex;align-items:center;gap:5px;font-family:'Syne',sans-serif;font-size:9px;font-weight:500;letter-spacing:.06em;color:var(--text-soft); }
+.mini-bar-val { font-family:'DM Serif Display',serif;font-size:14px;color:var(--text);line-height:1; }
+.mini-track { width:100%;height:3px;background:var(--putty2);border-radius:99px;overflow:hidden; }
+.mini-fill { height:100%;border-radius:99px;width:0;transition:width 1.2s cubic-bezier(.16,1,.3,1); }
+.vid-sec-total {
+  display:flex;align-items:center;justify-content:space-between;
+  padding:10px 12px;background:var(--putty);border-radius:10px;
+}
+.vst-num { font-family:'DM Serif Display',serif;font-size:22px;color:var(--text);line-height:1; }
+.vst-lbl { font-family:'Syne',sans-serif;font-size:9px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--text-soft); }
+
+/* ════════════════════════
+   PLATFORM BUTTONS
+════════════════════════ */
+.vid-platform-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  border-radius: 14px;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: all .22s ease;
+  position: relative;
+  overflow: hidden;
+}
+.vid-platform-btn::before {
+  content:'';position:absolute;inset:0;
+  opacity:0;transition:opacity .22s;
+  background:rgba(255,255,255,.06);
+}
+.vid-platform-btn:hover::before { opacity:1; }
+.vid-platform-btn:hover { transform:translateX(3px); }
+.yt-btn  { background:#fff5f5;border-color:rgba(255,92,92,.25); }
+.yt-btn:hover  { background:#ffe8e8;border-color:rgba(255,92,92,.5); }
+.ig-btn  { background:#fff0f4;border-color:rgba(232,117,138,.25); }
+.ig-btn:hover  { background:#ffdde5;border-color:rgba(232,117,138,.5); }
+.tt-btn  { background:#f0fbfc;border-color:rgba(77,189,196,.25); }
+.tt-btn:hover  { background:#ddf5f7;border-color:rgba(77,189,196,.5); }
+.vpb-icon { font-size:14px;flex-shrink:0; }
+.yt-btn  .vpb-icon { color:#ff5c5c; }
+.ig-btn  .vpb-icon { color:#e8758a; }
+.tt-btn  .vpb-icon { color:#4dbdc4; }
+.vpb-text { display:flex;flex-direction:column;gap:2px;flex:1; }
+.vpb-name { font-family:'Syne',sans-serif;font-size:12px;font-weight:600;letter-spacing:.04em;color:var(--text); }
+.vpb-stat { font-family:'DM Serif Display',serif;font-size:16px;font-weight:400;color:var(--text-mid);line-height:1; }
+.vpb-arrow { font-size:16px;color:var(--text-soft);transition:transform .2s; }
+.vid-platform-btn:hover .vpb-arrow { transform:translateX(3px); }
+
+/* ════════════════════════
+   PACKAGES
+════════════════════════ */
+.pkg-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:10px; }
+.pkg-card {
+  background:var(--white);border:1px solid var(--border);border-radius:22px;
+  padding:32px 26px;position:relative;overflow:hidden;
+  transition:transform .25s,box-shadow .25s;
+}
+.pkg-card:hover { transform:translateY(-4px);box-shadow:0 14px 40px rgba(26,23,20,.09); }
+.pkg-card.pop { background:var(--text);border-color:var(--text);color:var(--white); }
+.pkg-card.pop::before {
+  content:'';position:absolute;
+  width:260px;height:260px;border-radius:50%;
+  background:radial-gradient(circle,rgba(223,160,172,.15) 0%,transparent 70%);
+  top:-60px;right:-60px;pointer-events:none;
+}
+.pkg-card.tinted-sky { background:var(--sky3);border-color:rgba(144,184,216,.3); }
+
+.pkg-tag { display:inline-block;font-family:'Syne',sans-serif;font-size:8px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;padding:4px 12px;border-radius:99px;margin-bottom:20px; }
+.pkg-tag-dark { background:rgba(255,255,255,.13);color:rgba(255,255,255,.85); }
+.pkg-tag-sky { background:var(--sky2);color:#2a6890; }
+
+.pkg-title { font-family:'DM Serif Display',serif;font-size:22px;font-weight:400;line-height:1.2;margin-bottom:4px; }
+.pkg-subtitle { font-size:12px;margin-bottom:20px;opacity:.55; }
+.pkg-price { font-family:'DM Serif Display',serif;font-size:56px;font-weight:400;line-height:1;margin-bottom:4px; }
+.pkg-price-note { font-size:11px;opacity:.5;margin-bottom:24px;min-height:16px; }
+.pkg-hr { border:none;border-top:1px solid;opacity:.12;margin:0 0 18px; }
+.pkg-item { display:flex;align-items:flex-start;gap:9px;font-size:12px;padding:3px 0;line-height:1.5;opacity:.65; }
+.pkg-dot { width:3px;height:3px;border-radius:50%;margin-top:7px;flex-shrink:0; }
+.pkg-card.pop .pkg-dot { background:var(--blush); }
+.pkg-card:not(.pop) .pkg-dot { background:var(--putty3); }
+
+.addon-wrap { display:grid;grid-template-columns:repeat(2,1fr);gap:8px; }
+.addon-row {
+  background:var(--white);border:1px solid var(--border);border-radius:14px;
+  padding:14px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;
+  transition:background .2s;
+}
+.addon-row:hover { background:var(--putty); }
+.addon-name { font-size:12px;color:var(--text-mid); }
+.addon-price { font-family:'DM Serif Display',serif;font-size:20px;color:var(--text); }
+
+/* ════════════════════════
+   RETAINERS
+════════════════════════ */
+.ret-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:10px; }
+.ret-card {
+  background:var(--white);border:1px solid var(--border);border-radius:22px;
+  padding:32px 26px;position:relative;overflow:hidden;
+  transition:transform .25s,box-shadow .25s;
+}
+.ret-card:hover { transform:translateY(-4px);box-shadow:0 14px 40px rgba(26,23,20,.09); }
+.ret-card.pop { background:var(--text);border-color:var(--text); }
+.ret-card.pop::before {
+  content:'';position:absolute;
+  width:220px;height:220px;border-radius:50%;
+  background:radial-gradient(circle,rgba(232,184,138,.17) 0%,transparent 70%);
+  top:-50px;right:-50px;pointer-events:none;
+}
+.ret-tier { font-family:'Syne',sans-serif;font-size:9px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--text-soft);margin-bottom:12px; }
+.ret-card.pop .ret-tier { color:rgba(255,255,255,.38); }
+.ret-name { font-family:'DM Serif Display',serif;font-size:20px;font-weight:400;line-height:1.2;margin-bottom:16px; }
+.ret-card.pop .ret-name { color:var(--white); }
+.ret-price { font-family:'DM Serif Display',serif;font-size:40px;font-weight:400;line-height:1;margin-bottom:4px; }
+.ret-card.pop .ret-price { color:var(--white); }
+.ret-price span { font-size:16px;opacity:.5;font-family:'Instrument Sans',sans-serif;font-weight:400; }
+.ret-per { font-size:11px;opacity:.5;margin-bottom:22px; }
+.ret-hr { border:none;border-top:1px solid;opacity:.12;margin:0 0 16px; }
+.ret-card.pop .pkg-dot { background:var(--peach); }
+.ret-card.pop .pkg-item { color:rgba(255,255,255,.65); }
+
+/* ════════════════════════
+   CREATIVE BRIEF
+════════════════════════ */
+.brief-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  align-items: start;
+}
+
+/* Left — standard */
+.brief-standard {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  padding: 36px 32px;
+}
+.brief-standard-header { margin-bottom: 22px; }
+.brief-std-kicker {
+  font-family: 'Syne', sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: .26em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  display: block;
+  margin-bottom: 10px;
+}
+.brief-std-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 26px;
+  font-weight: 400;
+  color: var(--text);
+  line-height: 1.2;
+}
+.brief-std-title em { font-style: italic; color: var(--text-mid); }
+.brief-std-body {
+  font-size: 13px;
+  color: var(--text-soft);
+  line-height: 1.8;
+  margin-bottom: 14px;
+}
+.brief-checklist {
+  background: var(--putty);
+  border-radius: 14px;
+  padding: 20px 22px;
+  margin: 22px 0;
+}
+.brief-checklist-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  margin-bottom: 14px;
+}
+.brief-check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 12px;
+  color: var(--text-mid);
+  padding: 4px 0;
+  line-height: 1.5;
+}
+.bci-dot {
+  width: 3px; height: 3px;
+  border-radius: 50%;
+  background: var(--putty3);
+  margin-top: 7px;
+  flex-shrink: 0;
+}
+.brief-std-note {
+  font-size: 11px;
+  font-style: italic;
+  color: var(--text-soft);
+  line-height: 1.6;
+  padding-top: 4px;
+}
+
+/* Right — paid add-on */
+.brief-addon-card {
+  background: var(--text);
+  border-radius: 22px;
+  padding: 36px 32px;
+  position: relative;
+  overflow: hidden;
+}
+.brief-addon-card::before {
+  content: '';
+  position: absolute;
+  width: 280px; height: 280px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(232,184,138,.12) 0%, transparent 70%);
+  top: -60px; right: -60px;
+  pointer-events: none;
+}
+.brief-addon-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+.brief-addon-kicker {
+  font-family: 'Syne', sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.35);
+}
+.brief-addon-price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  text-align: right;
+}
+.brief-addon-price {
+  font-family: 'DM Serif Display', serif;
+  font-size: 36px;
+  font-weight: 400;
+  color: var(--peach);
+  line-height: 1;
+}
+.brief-addon-per {
+  font-family: 'Syne', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  color: rgba(255,255,255,.3);
+  letter-spacing: .08em;
+}
+.brief-addon-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 26px;
+  font-weight: 400;
+  color: var(--white);
+  line-height: 1.2;
+  margin-bottom: 18px;
+}
+.brief-addon-title em { font-style: italic; color: var(--peach); }
+.brief-addon-body {
+  font-size: 13px;
+  color: rgba(255,255,255,.55);
+  line-height: 1.8;
+  margin-bottom: 14px;
+}
+.brief-addon-includes {
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.09);
+  border-radius: 14px;
+  padding: 18px 20px;
+  margin: 20px 0;
+}
+.brief-addon-inc-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.3);
+  margin-bottom: 12px;
+}
+.brief-addon-inc-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 12px;
+  color: rgba(255,255,255,.65);
+  padding: 4px 0;
+  line-height: 1.5;
+}
+.bai-check {
+  color: var(--peach);
+  font-size: 12px;
+  flex-shrink: 0;
+  font-weight: 600;
+}
+.brief-addon-tag {
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 11px;
+  font-style: italic;
+  color: rgba(255,255,255,.3);
+  line-height: 1.5;
+}
+
+/* ════════════════════════
+   TERMS
+════════════════════════ */
+.terms-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:10px; }
+.term-cell { background:var(--white);border:1px solid var(--border);border-radius:16px;padding:22px;transition:background .2s; }
+.term-cell:hover { background:var(--putty); }
+.term-lbl { font-family:'Syne',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--text-soft);margin-bottom:6px; }
+.term-val { font-size:12px;color:var(--text-mid);line-height:1.6; }
+
+/* ════════════════════════
+   CLOSING
+════════════════════════ */
+.closing { background:var(--text);color:var(--white);padding:96px 40px;text-align:center;position:relative;overflow:hidden; }
+.closing::before { content:'';position:absolute;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(223,160,172,.1) 0%,transparent 65%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none; }
+.closing-inner { position:relative;z-index:2;max-width:540px;margin:0 auto; }
+.closing-kicker { font-family:'Syne',sans-serif;font-size:10px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:18px; }
+.closing-title { font-family:'DM Serif Display',serif;font-size:clamp(34px,5.5vw,60px);font-weight:400;line-height:1.1;color:var(--white);margin-bottom:20px; }
+.closing-title em { font-style:italic;color:var(--blush); }
+.closing-line { width:48px;height:1px;background:rgba(255,255,255,.22);margin:0 auto 20px; }
+.closing-note { font-size:11px;color:rgba(255,255,255,.32);line-height:2;letter-spacing:.06em; }
+
+/* ════════════════════════
+   RESPONSIVE
+════════════════════════ */
+@media(max-width:780px){
+  .expertise-wrap { grid-template-columns:1fr; }
+  .expertise-pillars { grid-template-columns:1fr 1fr; }
+  .vid-hero-wrap { grid-template-columns:1fr; }
+  .vid-hero-right .yt-wrap { min-height:260px; aspect-ratio:16/9; }
+  .vid-secondary { grid-template-columns:1fr; }
+  .vid-sec-top { grid-template-columns:1fr; }
+  .vid-sec-yt .yt-wrap { aspect-ratio:16/9; }
+  .brief-why { grid-template-columns: 1fr; }
+  .brief-q { grid-template-columns: 32px 1fr; padding: 18px 20px; }
+  .brief-preview-header { padding: 18px 20px; }
+  .brief-questions { padding: 0; }
+  .brief-preview-footer { padding: 16px 20px; flex-direction: column; gap: 6px; }
+  .addon-wrap { grid-template-columns:1fr; }
+  .brief-cols { grid-template-columns: 1fr; }
+  .brief-addon-top { flex-wrap: wrap; gap: 8px; }
+  .pkg-grid,.ret-grid,.terms-grid { grid-template-columns:1fr; }
+  .proof-pills { flex-direction:column;align-items:center; }
+}
+</style>
+</head>
+<body>
+
+<!-- ════════ HERO ════════ -->
+<section class="proof-hero">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+
+  <p class="hero-pre">UGC Content Creator · Beauty &amp; Skincare</p>
+
+  <div class="hero-big-num">67<span class="hero-big-suffix">.8M+</span></div>
+  <p class="hero-big-context">combined views across one video alone</p>
+
+  <div class="hero-rule"></div>
+
+  <h1 class="hero-name">crys<em>tal</em></h1>
+  <p class="hero-subtitle">TikTok &nbsp;·&nbsp; Instagram &nbsp;·&nbsp; YouTube Shorts</p>
+
+  <div class="proof-pills">
+    <div class="proof-pill">
+      <span class="pp-num">52M</span>
+      <span class="pp-lbl">YouTube<br>top video</span>
+    </div>
+    <div class="proof-pill">
+      <span class="pp-num">12.8M</span>
+      <span class="pp-lbl">Instagram<br>top video</span>
+    </div>
+    <div class="proof-pill">
+      <span class="pp-num">3</span>
+      <span class="pp-lbl">active<br>platforms</span>
+    </div>
+    <div class="proof-pill">
+      <span class="pp-num">6+</span>
+      <span class="pp-lbl">brand<br>collabs</span>
+    </div>
+  </div>
+
+  <div class="hero-collab-strip">
+    <span class="hcs-label">Worked with</span>
+    <span class="hcs-chip">Mello</span>
+    <span class="hcs-chip">Anua</span>
+    <span class="hcs-chip">Moodylenses</span>
+    <span class="hcs-chip">Arencia</span>
+    <span class="hcs-chip">Hetras</span>
+    <span class="hcs-chip">Glow</span>
+  </div>
+
+  <div class="hero-scroll-cue">
+    <span class="hsc-text">See the work</span>
+    <div class="hsc-dot"></div>
+  </div>
+</section>
+
+<!-- ════════ BENCHMARK ════════ -->
+<div class="bench-strip">
+  <div class="bench-inner">
+    <div class="bench-item"><span class="bench-icon">🌏</span><span>Top video reached <strong>67.7M people</strong> — more than the entire UK population</span></div>
+    <div class="bench-item"><span class="bench-icon">📱</span><span>Went viral on <strong>all 3 platforms</strong> simultaneously</span></div>
+    <div class="bench-item"><span class="bench-icon">⚡</span><span><strong>100% organic</strong> — zero paid promotion</span></div>
+  </div>
+</div>
+
+<div class="page">
+
+  <!-- ════════ WHY IT WORKS — GEN Z EXPERTISE ════════ -->
+  <div class="sec-wrap sr">
+    <div class="sec-h">
+      <span class="sec-num">01</span>
+      <div class="sec-titles">
+        <span class="sec-kicker">Why it works</span>
+        <h2 class="sec-title">Content built for <em>attention</em></h2>
+        <p class="sec-desc">Most UGC creators make pretty videos. I make videos that convert — because I understand what actually stops a Gen Z scroll.</p>
+      </div>
+    </div>
+
+    <div class="expertise-wrap">
+
+      <!-- The statement -->
+      <div class="expertise-statement">
+        <div>
+          <p class="es-eyebrow">The difference</p>
+          <p class="es-quote">
+            Gen Z doesn't watch ads. They watch people they <em>trust</em> — and they decide in the first 0.5 seconds whether to keep watching.
+          </p>
+        </div>
+        <div>
+          <p style="font-family:'Instrument Sans',sans-serif;font-size:13px;line-height:1.8;color:rgba(255,255,255,.6);margin-bottom:20px;">
+            I've spent the last year studying what makes beauty content perform — not just look good. I know that the hook isn't the product, it's the feeling. That authenticity isn't accidental, it's crafted. That a 3-second open can be the difference between 500 views and 50 million.
+          </p>
+          <p style="font-family:'Instrument Sans',sans-serif;font-size:13px;line-height:1.8;color:rgba(255,255,255,.6);">
+            My content doesn't feel like an ad because I understand the platform, the audience, and the psychology of what Gen Z actually responds to — dewy aesthetics, honest reviews, real reactions, and the kind of effortless energy that makes a viewer feel like they discovered your brand themselves.
+          </p>
+          <p class="es-byline" style="margin-top:20px;">Crystal · UGC Beauty &amp; Skincare Creator</p>
+        </div>
+      </div>
+
+      <!-- The four pillars -->
+      <div class="expertise-pillars">
+
+        <div class="pillar-card pillar-blush">
+          <span class="pillar-icon">⚡</span>
+          <div class="pillar-title">Hook-first thinking</div>
+          <div class="pillar-desc">Every video opens with something that stops the scroll. I write hooks that speak directly to what Gen Z is already thinking — before they even know they wanted it.</div>
+        </div>
+
+        <div class="pillar-card pillar-sky">
+          <span class="pillar-icon">📱</span>
+          <div class="pillar-title">Platform-native formats</div>
+          <div class="pillar-desc">I don't repurpose content — I create for each platform's algorithm. What works on YouTube Shorts is different from TikTok, and I know both.</div>
+        </div>
+
+        <div class="pillar-card pillar-peach">
+          <span class="pillar-icon">✨</span>
+          <div class="pillar-title">Authentic by design</div>
+          <div class="pillar-desc">Gen Z can spot an ad in 0.3 seconds. My content is crafted to feel like a genuine recommendation from a friend — because that's what actually drives purchases.</div>
+        </div>
+
+        <div class="pillar-card pillar-sage">
+          <span class="pillar-icon">📈</span>
+          <div class="pillar-title">Proven track record</div>
+          <div class="pillar-desc">67.7M views on a single video isn't luck — it's the result of understanding trends, timing, and what the beauty audience genuinely wants to see.</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════ FEATURED WORK ════════ -->
+  <div class="sec-wrap sr">
+    <div class="sec-h">
+      <span class="sec-num">02</span>
+      <div class="sec-titles">
+        <span class="sec-kicker">Portfolio</span>
+        <h2 class="sec-title">Watch the <em>work</em></h2>
+        <p class="sec-desc">Every number below is organic. No boosting, no ads — just content that resonated and spread on its own.</p>
+      </div>
+    </div>
+
+    <div class="vid-hero-wrap">
+      <div class="vid-hero-left">
+        <div>
+          <div class="vid-hero-badge"><div class="badge-dot"></div>Top performing video</div>
+          <div class="vid-hero-title">Viral skincare<br><em>content</em></div>
+          <div class="vid-hero-brand">Mello · Skincare</div>
+          <div class="stat-bars">
+            <div>
+              <div class="stat-bar-top">
+                <div class="stat-bar-plat"><span class="stat-bar-dot" style="background:#ff5c5c"></span>YouTube Shorts</div>
+                <span class="stat-bar-val">52M</span>
+              </div>
+              <div class="stat-bar-track"><div class="stat-bar-fill" data-w="100" style="background:#ff5c5c"></div></div>
+            </div>
+            <div>
+              <div class="stat-bar-top">
+                <div class="stat-bar-plat"><span class="stat-bar-dot" style="background:#e8758a"></span>Instagram</div>
+                <span class="stat-bar-val">12.8M</span>
+              </div>
+              <div class="stat-bar-track"><div class="stat-bar-fill" data-w="25" style="background:#e8758a"></div></div>
+            </div>
+            <div>
+              <div class="stat-bar-top">
+                <div class="stat-bar-plat"><span class="stat-bar-dot" style="background:#4dbdc4"></span>TikTok</div>
+                <span class="stat-bar-val">2.9M</span>
+              </div>
+              <div class="stat-bar-track"><div class="stat-bar-fill" data-w="6" style="background:#4dbdc4"></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="vid-total-row">
+          <div class="vid-total-num">67.7M</div>
+          <div class="vid-total-context">
+            <strong>total combined views</strong>
+            More than the entire UK population — one video, zero paid spend
+          </div>
+        </div>
+      </div>
+      <div class="vid-hero-right">
+        <div style="position:relative;width:100%;height:100%;min-height:400px;display:flex;flex-direction:column;">
+          <!-- Three big platform buttons stacked -->
+          <div style="display:flex;flex-direction:column;gap:10px;padding:28px 28px 0;flex:1;justify-content:center;">
+            <p style="font-family:'Syne',sans-serif;font-size:9px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--text-soft);margin-bottom:6px;">Watch on your platform</p>
+            <a href="https://youtube.com/shorts/vQUs7MhxTc0" target="_blank" class="vid-platform-btn yt-btn">
+              <span class="vpb-icon">▶</span>
+              <div class="vpb-text">
+                <span class="vpb-name">YouTube Shorts</span>
+                <span class="vpb-stat">52M views</span>
+              </div>
+              <span class="vpb-arrow">→</span>
+            </a>
+            <a href="https://www.instagram.com/reel/DNjcvmCyEWf/" target="_blank" class="vid-platform-btn ig-btn">
+              <span class="vpb-icon">▶</span>
+              <div class="vpb-text">
+                <span class="vpb-name">Instagram Reel</span>
+                <span class="vpb-stat">12.8M views</span>
+              </div>
+              <span class="vpb-arrow">→</span>
+            </a>
+            <a href="https://www.tiktok.com/@mymelloclip/video/7540432791209512206" target="_blank" class="vid-platform-btn tt-btn">
+              <span class="vpb-icon">▶</span>
+              <div class="vpb-text">
+                <span class="vpb-name">TikTok</span>
+                <span class="vpb-stat">2.9M views</span>
+              </div>
+              <span class="vpb-arrow">→</span>
+            </a>
+          </div>
+          <div style="padding:16px 28px 24px;">
+            <p style="font-size:11px;color:var(--text-soft);font-style:italic;line-height:1.5;">"Same video, three platforms — all organic, all viral."</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="vid-secondary">
+      <div class="vid-sec-card">
+        <div class="vid-sec-top">
+          <div class="vid-sec-yt" style="position:relative;display:flex;flex-direction:column;gap:8px;padding:18px 16px;justify-content:center;background:var(--putty);aspect-ratio:9/14;">
+            <p style="font-family:'Syne',sans-serif;font-size:8px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--text-soft);margin-bottom:2px;">Watch video</p>
+            <a href="https://youtube.com/shorts/B58pXkbLkKY" target="_blank" class="vid-platform-btn yt-btn" style="font-size:11px;padding:10px 12px;">
+              <span class="vpb-icon" style="font-size:11px;">▶</span>
+              <div class="vpb-text"><span class="vpb-name" style="font-size:10px;">YouTube Shorts</span><span class="vpb-stat" style="font-size:9px;">60K views</span></div>
+              <span class="vpb-arrow">→</span>
+            </a>
+            <a href="https://www.instagram.com/reel/DOubrYdiVTC/" target="_blank" class="vid-platform-btn ig-btn" style="font-size:11px;padding:10px 12px;">
+              <span class="vpb-icon" style="font-size:11px;">▶</span>
+              <div class="vpb-text"><span class="vpb-name" style="font-size:10px;">Instagram</span><span class="vpb-stat" style="font-size:9px;">6.3M views</span></div>
+              <span class="vpb-arrow">→</span>
+            </a>
+            <a href="https://www.tiktok.com/@mymelloclip/video/7546399874099547447" target="_blank" class="vid-platform-btn tt-btn" style="font-size:11px;padding:10px 12px;">
+              <span class="vpb-icon" style="font-size:11px;">▶</span>
+              <div class="vpb-text"><span class="vpb-name" style="font-size:10px;">TikTok</span><span class="vpb-stat" style="font-size:9px;">1.2M views</span></div>
+              <span class="vpb-arrow">→</span>
+            </a>
+          </div>
+          <div class="vid-sec-stats">
+            <div class="vid-sec-brand">Mello · Skincare</div>
+            <div class="mini-stat-bars">
+              <div>
+                <div class="mini-bar-top">
+                  <div class="mini-bar-plat"><span style="width:6px;height:6px;border-radius:50%;background:#e8758a;flex-shrink:0"></span>Instagram</div>
+                  <span class="mini-bar-val">6.3M</span>
+                </div>
+                <div class="mini-track"><div class="mini-fill" data-w="100" style="background:#e8758a"></div></div>
+              </div>
+              <div>
+                <div class="mini-bar-top">
+                  <div class="mini-bar-plat"><span style="width:6px;height:6px;border-radius:50%;background:#4dbdc4;flex-shrink:0"></span>TikTok</div>
+                  <span class="mini-bar-val">1.2M</span>
+                </div>
+                <div class="mini-track"><div class="mini-fill" data-w="19" style="background:#4dbdc4"></div></div>
+              </div>
+              <div>
+                <div class="mini-bar-top">
+                  <div class="mini-bar-plat"><span style="width:6px;height:6px;border-radius:50%;background:#ff5c5c;flex-shrink:0"></span>YouTube</div>
+                  <span class="mini-bar-val">60K</span>
+                </div>
+                <div class="mini-track"><div class="mini-fill" data-w="1" style="background:#ff5c5c"></div></div>
+              </div>
+            </div>
+            <div class="vid-sec-total"><span class="vst-num">7.56M</span><span class="vst-lbl">total views</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="vid-sec-card">
+        <div class="vid-sec-top">
+          <div class="vid-sec-yt" style="position:relative;">
+            <div class="plat-link-pills"><a class="plp" href="https://www.instagram.com/reel/DWh2Iwaj23p/" target="_blank">▶ IG</a></div>
+            <a class="social-thumb" href="https://www.instagram.com/reel/DWh2Iwaj23p/" target="_blank">
+              <div class="play-ring"><div class="play-tri"></div></div>
+              <span class="social-watch-lbl">Watch on IG</span>
+            </a>
+          </div>
+          <div class="vid-sec-stats">
+            <div class="vid-sec-brand">Personal · Unboxing</div>
+            <div class="mini-stat-bars">
+              <div>
+                <div class="mini-bar-top">
+                  <div class="mini-bar-plat"><span style="width:6px;height:6px;border-radius:50%;background:#e8758a;flex-shrink:0"></span>Instagram</div>
+                  <span class="mini-bar-val">46K</span>
+                </div>
+                <div class="mini-track"><div class="mini-fill" data-w="100" style="background:#e8758a"></div></div>
+              </div>
+            </div>
+            <div class="vid-sec-total"><span class="vst-num">46K</span><span class="vst-lbl">total views</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════ PACKAGES ════════ -->
+  <div class="sec-wrap sr">
+    <div class="sec-h">
+      <span class="sec-num">03</span>
+      <div class="sec-titles">
+        <span class="sec-kicker">Pricing</span>
+        <h2 class="sec-title">Content <em>packages</em></h2>
+        <p class="sec-desc">All packages include raw files, final edit, and direct communication. Straightforward pricing, no surprises.</p>
+      </div>
+    </div>
+
+    <div class="pkg-grid">
+      <div class="pkg-card tinted-sky">
+        <span class="pkg-tag pkg-tag-sky">Starter</span>
+        <div class="pkg-title">Single Video</div>
+        <div class="pkg-subtitle">One scroll-stopping deliverable</div>
+        <div class="pkg-price">$400</div>
+        <div class="pkg-price-note">per video · raw + final edit included</div>
+        <hr class="pkg-hr" style="border-color:var(--putty3)">
+        <div class="pkg-item"><span class="pkg-dot"></span>15–60 second hook-first video</div>
+        <div class="pkg-item"><span class="pkg-dot"></span>1 round of revisions</div>
+        <div class="pkg-item"><span class="pkg-dot"></span>Organic license · 30 days</div>
+      </div>
+
+      <div class="pkg-card pop">
+        <span class="pkg-tag pkg-tag-dark">Most popular</span>
+        <div class="pkg-title" style="color:var(--white)">Bundle · 3 Videos</div>
+        <div class="pkg-subtitle">Test multiple hooks &amp; angles</div>
+        <div class="pkg-price" style="color:var(--white)">$1,050</div>
+        <div class="pkg-price-note" style="color:rgba(255,255,255,.45)">$350 per video · save $150</div>
+        <hr class="pkg-hr">
+        <div class="pkg-item" style="color:rgba(255,255,255,.65)"><span class="pkg-dot"></span>3 varied hook-first videos</div>
+        <div class="pkg-item" style="color:rgba(255,255,255,.65)"><span class="pkg-dot"></span>2 revision rounds each</div>
+        <div class="pkg-item" style="color:rgba(255,255,255,.65)"><span class="pkg-dot"></span>Organic license · 60 days</div>
+      </div>
+
+      <div class="pkg-card">
+        <span class="pkg-tag" style="background:var(--putty2);color:var(--text-mid)">Best value</span>
+        <div class="pkg-title">Bundle · 5 Videos</div>
+        <div class="pkg-subtitle">Full campaign content library</div>
+        <div class="pkg-price">$1,625</div>
+        <div class="pkg-price-note">$325 per video · save $375</div>
+        <hr class="pkg-hr" style="border-color:var(--putty3)">
+        <div class="pkg-item"><span class="pkg-dot"></span>5 varied hook-first videos</div>
+        <div class="pkg-item"><span class="pkg-dot"></span>2 revision rounds each</div>
+        <div class="pkg-item"><span class="pkg-dot"></span>Organic license · 90 days</div>
+      </div>
+    </div>
+
+    <div class="addon-wrap" style="margin-top:10px;">
+      <div class="addon-row"><span class="addon-name">Paid ads &amp; whitelisting · 30 days</span><span class="addon-price">+$150</span></div>
+      <div class="addon-row"><span class="addon-name">Paid ads &amp; whitelisting · 90 days</span><span class="addon-price">+$300</span></div>
+      <div class="addon-row"><span class="addon-name">Category exclusivity · 30 days</span><span class="addon-price">+$200</span></div>
+      <div class="addon-row"><span class="addon-name">Rush delivery · under 5 days</span><span class="addon-price">+$100</span></div>
+    </div>
+  </div>
+
+  <!-- ════════ RETAINERS ════════ -->
+  <div class="sec-wrap sr">
+    <div class="sec-h">
+      <span class="sec-num">04</span>
+      <div class="sec-titles">
+        <span class="sec-kicker">Long-term</span>
+        <h2 class="sec-title">Monthly <em>retainers</em></h2>
+        <p class="sec-desc">For brands that want consistent content and a creator who genuinely knows their product. Retainers mean better rates, priority scheduling, and a real creative partnership.</p>
+      </div>
+    </div>
+    <div class="ret-grid">
+      <div class="ret-card">
+        <div class="ret-tier">Starter</div>
+        <div class="ret-name">2 Videos / Month</div>
+        <div class="ret-price">$700<span>/mo</span></div>
+        <div class="ret-per">$350 per video</div>
+        <hr class="ret-hr" style="border-color:var(--putty3)">
+        <div class="pkg-item"><span class="pkg-dot" style="background:var(--putty3)"></span>Priority scheduling</div>
+        <div class="pkg-item"><span class="pkg-dot" style="background:var(--putty3)"></span>Organic license included</div>
+        <div class="pkg-item"><span class="pkg-dot" style="background:var(--putty3)"></span>Dedicated brief review</div>
+      </div>
+      <div class="ret-card pop">
+        <span class="pkg-tag" style="background:rgba(232,184,138,.2);color:var(--peach);font-family:'Syne',sans-serif;font-size:8px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;padding:4px 12px;border-radius:99px;margin-bottom:20px;display:inline-block;">Recommended</span>
+        <div class="ret-tier">Growth</div>
+        <div class="ret-name">4 Videos / Month</div>
+        <div class="ret-price">$1,200<span>/mo</span></div>
+        <div class="ret-per">$300/video · save $400/mo</div>
+        <hr class="ret-hr">
+        <div class="pkg-item"><span class="pkg-dot"></span>Priority scheduling</div>
+        <div class="pkg-item"><span class="pkg-dot"></span>Monthly strategy call</div>
+        <div class="pkg-item"><span class="pkg-dot"></span>Organic license included</div>
+        <div class="pkg-item"><span class="pkg-dot"></span>Content calendar planning</div>
+      </div>
+      <div class="ret-card">
+        <div class="ret-tier">Partner</div>
+        <div class="ret-name">6 Videos / Month</div>
+        <div class="ret-price">$1,680<span>/mo</span></div>
+        <div class="ret-per">$280/video · save $720/mo</div>
+        <hr class="ret-hr" style="border-color:var(--putty3)">
+        <div class="pkg-item"><span class="pkg-dot" style="background:var(--putty3)"></span>Priority scheduling</div>
+        <div class="pkg-item"><span class="pkg-dot" style="background:var(--putty3)"></span>Monthly strategy call</div>
+        <div class="pkg-item"><span class="pkg-dot" style="background:var(--putty3)"></span>1× ad usage right included</div>
+        <div class="pkg-item"><span class="pkg-dot" style="background:var(--putty3)"></span>Full content calendar</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════ CREATIVE BRIEF ════════ -->
+  <div class="sec-wrap sr">
+    <div class="sec-h">
+      <span class="sec-num">05</span>
+      <div class="sec-titles">
+        <span class="sec-kicker">The process</span>
+        <h2 class="sec-title">The creative <em>brief</em></h2>
+        <p class="sec-desc">Great content starts with a great brief. Here's how the process works — and what's available if you need extra support.</p>
+      </div>
+    </div>
+
+    <!-- Two column — standard flow + add-on service -->
+    <div class="brief-cols">
+
+      <!-- LEFT: standard — brand provides brief -->
+      <div class="brief-standard">
+        <div class="brief-standard-header">
+          <span class="brief-std-kicker">Standard — included in every package</span>
+          <h3 class="brief-std-title">You bring the brief,<br>I bring the <em>magic</em></h3>
+        </div>
+        <p class="brief-std-body">
+          Every booking requires a creative brief from your brand. This is your chance to tell me exactly what you want — your product, your messaging, your vibe, your non-negotiables. The clearer your brief, the better the content. No brief, no filming.
+        </p>
+        <p class="brief-std-body">
+          Think of it as your creative handoff. You know your brand better than anyone — your brief is how that knowledge becomes content.
+        </p>
+
+        <!-- What a good brief includes -->
+        <div class="brief-checklist">
+          <div class="brief-checklist-title">What your brief should cover</div>
+          <div class="brief-check-item"><span class="bci-dot"></span>Product or ingredient to feature</div>
+          <div class="brief-check-item"><span class="bci-dot"></span>Key message or desired viewer action</div>
+          <div class="brief-check-item"><span class="bci-dot"></span>Tone — aesthetic, educational, raw, GRWM, etc.</div>
+          <div class="brief-check-item"><span class="bci-dot"></span>Any claims, phrases to include or avoid</div>
+          <div class="brief-check-item"><span class="bci-dot"></span>Whether content is for organic use or paid ads</div>
+          <div class="brief-check-item"><span class="bci-dot"></span>Target audience and any campaign context</div>
+        </div>
+
+        <div class="brief-std-note">
+          Not sure what to include? The add-on service below is designed for exactly that.
+        </div>
+      </div>
+
+      <!-- RIGHT: paid add-on — Crystal writes the brief -->
+      <div class="brief-addon-card">
+        <div class="brief-addon-top">
+          <span class="brief-addon-kicker">Add-on service</span>
+          <div class="brief-addon-price-row">
+            <span class="brief-addon-price">+$150</span>
+            <span class="brief-addon-per">one-time</span>
+          </div>
+        </div>
+
+        <h3 class="brief-addon-title">Creative Brief<br><em>Writing Service</em></h3>
+
+        <p class="brief-addon-body">
+          No internal marketing team? Not sure how to brief a creator? I'll handle it. Based on your brand, product, and goals, I'll write a full creative brief for you — so we both go into the collaboration with a clear, strategic direction from day one.
+        </p>
+        <p class="brief-addon-body">
+          This is the same thinking I apply to every piece of content I make — packaged as a standalone strategy document your team can use for future campaigns too.
+        </p>
+
+        <div class="brief-addon-includes">
+          <div class="brief-addon-inc-title">What's included</div>
+          <div class="brief-addon-inc-item"><span class="bai-check">✓</span>Hook strategy &amp; content angle</div>
+          <div class="brief-addon-inc-item"><span class="bai-check">✓</span>Platform-specific format recommendation</div>
+          <div class="brief-addon-inc-item"><span class="bai-check">✓</span>Tone, pacing &amp; visual direction</div>
+          <div class="brief-addon-inc-item"><span class="bai-check">✓</span>Key messaging &amp; Gen Z language guide</div>
+          <div class="brief-addon-inc-item"><span class="bai-check">✓</span>Delivered as a reusable brand document</div>
+        </div>
+
+        <div class="brief-addon-tag">
+          Ideal for brands new to UGC or launching a new product
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ════════ TERMS ════════ -->
+  <div class="sec-wrap sr">
+    <div class="sec-h">
+      <span class="sec-num">06</span>
+      <div class="sec-titles">
+        <span class="sec-kicker">Working together</span>
+        <h2 class="sec-title">Terms &amp; <em>process</em></h2>
+      </div>
+    </div>
+    <div class="terms-grid">
+      <div class="term-cell"><div class="term-lbl">Payment</div><div class="term-val">50% upfront, 50% on delivery</div></div>
+      <div class="term-cell"><div class="term-lbl">Turnaround</div><div class="term-val">7–10 business days after brief received</div></div>
+      <div class="term-cell"><div class="term-lbl">Revisions</div><div class="term-val">1–2 rounds included per package</div></div>
+      <div class="term-cell"><div class="term-lbl">Usage rights</div><div class="term-val">Organic only — paid ads available as add-on</div></div>
+      <div class="term-cell"><div class="term-lbl">Exclusivity</div><div class="term-val">30-day category exclusivity available</div></div>
+      <div class="term-cell"><div class="term-lbl">Creative brief</div><div class="term-val">Required from brand before filming begins · writing service available as add-on</div></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ════════ CLOSING ════════ -->
+<div class="closing sr">
+  <div class="closing-inner">
+    <p class="closing-kicker">Let's make something scroll-stopping</p>
+    <h2 class="closing-title">Ready to go <em>viral?</em></h2>
+    <div class="closing-line"></div>
+    <p class="closing-note">
+      Rates valid for 60 days &nbsp;·&nbsp; All prices USD<br>
+      Custom packages available on request<br><br>
+      © Crystal &nbsp;·&nbsp; UGC Beauty &amp; Skincare Creator
+    </p>
+  </div>
+</div>
+
+<script>
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target); } });
+  }, { threshold: 0.07 });
+  document.querySelectorAll('.sr').forEach(el => io.observe(el));
+
+  const barObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        e.target.querySelectorAll('.stat-bar-fill, .mini-fill').forEach(bar => {
+          const w = bar.dataset.w;
+          setTimeout(() => { bar.style.width = w + '%'; }, 250);
+        });
+        barObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('.vid-hero-wrap, .vid-sec-card').forEach(el => barObs.observe(el));
+</script>
+</body>
+</html>
